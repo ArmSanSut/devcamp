@@ -1,0 +1,57 @@
+.menu-bar {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.about-me {
+    padding: 10px 20px;
+}
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Lucida Sans';
+    text-align: center;
+    color: brown;
+}
+
+h2 {
+    font-size: 50px;
+    font-weight: bold;
+    color: brown;
+    font-family: 'Lucida Sans';
+    text-align: center;
+}
+h3 {
+    font-size: 50px;
+    font-weight: bold;
+    color: brown;
+    font-family: 'Lucida Sans';
+    text-align: center;
+}
+h4 {
+    font-size: 50px;
+    font-weight: bold;
+    color: brown;
+    font-family: 'Lucida Sans';
+    text-align: center;
+}
+.picture {
+   max-width: 200px;
+   max-height: 200px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+p {
+    text-indent: 200px;
+    width: 100%;
+}
+.skill{
+    line-height: 55px;
+}
+.contact {
+    list-style-type: none;
+    text-align: center;
+    line-height: 100px;
+}
