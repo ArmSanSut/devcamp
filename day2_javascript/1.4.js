@@ -1,11 +1,11 @@
-//1.2
+//1.4
 let text = '';
 function draw(n) {
     for(i=1; i<=n;i++){
        
         for(j=1; j<=n; j++){
             
-            text += j;
+            text += i;
         }
     text += '\n';
     }

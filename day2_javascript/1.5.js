@@ -1,16 +1,14 @@
-//1.2
+//1.5
 let text = '';
 function draw(n) {
-    for(i=1; i<=n;i++){
+    for(i=n; i>=1;i--){
        
-        for(j=1; j<=n; j++){
+        for(j=n; j>=1; j--){
             
-            text += j;
+            text += i;
         }
     text += '\n';
     }
     console.log(text);
 }
-draw(2);
-draw(3);
 draw(4);
