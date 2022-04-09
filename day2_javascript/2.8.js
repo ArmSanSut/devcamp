@@ -1,23 +1,26 @@
 
 function draw(n) {
+    let x = 1;
     let text = '';
-    for(i=1; i<=n; i++){
-        for(j=1; j<=n; j++){
-            if(i>=j){
-                text += '*';
+    for(i=n-1; i>=0; i--){
+        for(j=0; j<n; j++){
+            if(i<=j){
+                text += x;
+                x++;
             }  else {
-                text += '_';
+                text += '-';
             }
         }
         text += '\n';
     }
     //แยก 2 บรรทัดล่างออกเพื่อสร้าง condition ใหม่
-    for(i=n-1; i>=1; i--){
-        for(j=1; j<=n; j++){
-            if(i<j){
-                text += '_';
+    for(i=n-2; i<n; i++){
+        for(j=0; j<n; j++){
+            if(j>=i){
+                text += x;
+                x++;
             }else {
-                text += '*';
+                text += '-';
             }
         }
         text += '\n';
