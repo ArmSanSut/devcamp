@@ -1,0 +1,9 @@
+body {
+    background-color: darkgray;
+}
+.carousel-item {
+    height: 32rem;
+}
+.navbar-items {
+    font-weight: bold;
+}
