@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+}
+.image {
+    width: 400px;
+    height: 400px;
+    margin: 20px;
+}
+.container {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+}
