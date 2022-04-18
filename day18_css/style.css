@@ -57,15 +57,14 @@ h1 {
 
 .default {
     background-color: red;
-    height: 300px;
+    height: 100px;
 }
 @media (min-width: 576px) {}
 @media (min-width: 768px) {}
 @media (min-width: 992px) {
-    .largeScreen {background-color: pink;}
     .mobileOnly {display: none;}
 }
-@media (min-width: 1200px) {}
+
 
 
 
