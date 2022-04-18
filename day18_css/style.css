@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=My+Soul&family=PT+Sans&display=swap');
+.heading {
+    background-color: gray;
+    margin: 0;
+}
+h1 {
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    background-color: coral;
+    margin: auto;
+}
+.first{
+    color: darkblue;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+.third,.second {
+    color: darkgreen;
+}
+.border {
+    background-color: bisque;
+    border-width: 3px;
+    border-color: red;
+    border-style: solid;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 50px;
+    display: inline-block;
+    align-items: center;
+    
+}
+.BorderOfP {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-container {
+    width: 50%;
+    height: 75%;
+    margin: auto;
+    flex-wrap: wrap;
+    display: flex;
+    background: cornflowerblue;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    background: pink;
+    padding: 20px;
+    margin: 20px;
+}
+
+.default {
+    background-color: red;
+    height: 300px;
+}
+@media (min-width: 576px) {}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {
+    .largeScreen {background-color: pink;}
+    .mobileOnly {display: none;}
+}
+@media (min-width: 1200px) {}
+
+
+
+

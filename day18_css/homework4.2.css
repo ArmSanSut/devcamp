@@ -1,0 +1,31 @@
+
+.mobileOnly {
+    text-align: end;
+}
+.hidden {     
+    font-weight: bold;
+    text-decoration: none;
+}
+h1{
+    font-size: 100px; 
+}
+.mobileOnly{
+    color: red;
+}
+
+       
+        @media (min-width: 576px) {
+            .largeScreen {background-color: white;}
+            .mobileOnly {display: none;}
+        }
+        
+
+
+        @media (max-width: 576px) {
+            .largeScreen {background-color: white;}
+            .hidden {display: none;}
+        }
+        @media (max-width: 700px) {
+            .largeScreen {background-color: white;}
+            .text{font-size: 3000;}
+        }
