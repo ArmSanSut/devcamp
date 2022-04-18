@@ -27,5 +27,5 @@ h1{
         }
         @media (min-width: 700px) {
             .largeScreen {background-color: white;}
-            h1{font-size: 150px!important;}
+            .text{font-size: 100px !important;}
         }
