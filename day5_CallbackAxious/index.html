@@ -3,19 +3,32 @@
     <head>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
-    
     <body>
         <script>
-            function getUser() {
-                axios.get("https://reqres.in/api/users/").then(function (response) {
-            
-                console.log(response.data.data)
+            let aUser = [];
+             function getUser(callback) {
+                axios.get("https://reqres.in/api/users/1").then(function (response) {
+                    console.log(response.data.data)
+                    aUser.push(response.data.data)
+                    callback();
                 })
             }
-            getUser();
-            //getUser(2);
+     function getUser2(callback) {
+                axios.get("https://reqres.in/api/users/2").then(function (response) {
+                    console.log(response.data.data)
+                    aUser.push(response.data.data)
+                    callback();
+                })
+            }
+            getUser(function(){
+                getUser2(function(){
+                    console.log(aUser);
+                });
+            });
         </script>
     </body>
+    
+    
     
     
 </html>
