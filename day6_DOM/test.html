@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="p-3">
+    <button id="btn" class="btn btn-primary">Modal</button>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div id="body" class="modal-body">
+            Loading...
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      const api = "https://swapi.dev/api/people/";
+      let count = 1;
+      window.onload = function () {
+        var myModal = new bootstrap.Modal(
+          document.getElementById("exampleModal"),
+          {
+            keyboard: false
+          }
+        );
+
+        function showModal() {
+          myModal.show();
+          getpeople();
+        }
+
+        function getpeople() {
+          document.getElementById("body").innerText = "Loading";
+          axios.get(api + count).then(function (res) {
+            let view = "";
+            if (res.data) {
+              view += "<p><strong>Name : </strong>" + res.data.name + "</p>";
+              view +=
+                "<p><strong>Gender : </strong>" + res.data.gender + "</p>";
+            }
+            document.getElementById("body").innerHTML = view;
+            count += 1;
+          });
+        }
+
+        document.getElementById("btn").addEventListener("click", showModal);
+      };
+    </script>
+  </body>
+</html>
