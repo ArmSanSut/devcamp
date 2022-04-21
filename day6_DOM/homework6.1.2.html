@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Homework 6.1.2</title>
+</head>
+<body>
+    <p id="text">Product Price</p>
+    <input name="text1" id="text1">
+    <script>
+        
+        
+        function thousand(){
+            
+            let result = document.getElementById("text1").value;
+            //document.getElementById("text1").value = count;
+            var pattern = /\B(?=(\d{3})+(?!\d))/g;
+            //console.log(typeof(result));
+            if (pattern.test(result)){
+                result = result.replace(",","").replace(pattern,",");
+                
+                document.getElementById("text1").value = result;
+                console.log(result);
+
+            }
+            console.log(result);
+        }
+        document.getElementById("text1").addEventListener("keyup",thousand);
+
+        
+    </script>
+
+    <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+    crossorigin="anonymous"></script>
+
+</body>
+</html>
