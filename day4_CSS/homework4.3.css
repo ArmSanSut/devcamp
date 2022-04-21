@@ -7,3 +7,7 @@ body {
 .navbar-items {
     font-weight: bold;
 }
+.rounded  {
+    width: 400px;
+    height: 150px;
+} 
