@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On click Button</title>
+</head>
+<body>
+    <button id="btn">Click Here!</button>
+    <div id="result">0</div>
+    <input name="text1" type="number" id="text1" value="0">
+
+    <script>
+        let count = 0;
+        function countNumber (){
+            count++;
+            document.getElementById("result").innerText = count;
+            document.getElementById("text1").value = count;
+        }
+        function typeNumber() {
+            count = +e.target.value;
+            document.getElementById("result").innerText = e.target.value;
+        }
+        document.getElementById("text1").addEventListener("keydown", typeNumber);
+        document.getElementById("btn").addEventListener("click", countNumber);
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion</title>
+</head>
+<body>
+    <button id="btn">+ADD</button>
+    <button id="removetop">--Remove Top--</button>
+    <div id="result"></div>
+
+    <script>
+        let btn = document.getElementById("btn");
+        let result = document.getElementById("result");
+        let removetop = document.getElementById("removetop");
+        function insertNode(){
+            let tagP = document.createElement("p");
+            tagP.innerText = "Time" + new Date;
+            tagP.style.color = "magenta";
+
+            result.appendChild(tagP);
+           // result.innerHTML = tagP.innerHTML;
+        }
+        function removeTop() {
+            const item = document.querySelectorAll("#result div");
+            if (item.length>0){
+                document.querySelectorAll("#result div")[0].remove();
+            }
+            
+        }
+
+        btn.addEventListener("click", insertNode);
+        removetop.addEventListener("click",removeTop);
+    </script>
+
+</body>
+</html>
