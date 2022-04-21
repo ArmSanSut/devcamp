@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Homework5_3</title>
+
+</head>
+
+<body>
+    <center>
+        <h1>Hello ReqRes users!</h1>
+        <table>
+            <tr id="content">
+
+            </tr>
+
+        </table>
+    </center>
+    <script>
+
+        function getUser(callback) {
+            axios.get("https://reqres.in/api/users?delay=3").then(function (response) {
+                let aUser = response.data.data
+                let gender = []
+                let ages= []
+                let aLastName = []
+                for (let index = 0; index < aUser.length; index++) {
+                    aLastName[index] = aUser[index].last_name
+                    
+                }
+                for (let index = 0; index < aUser.length; index++) {
+                    axios.get(`https://api.genderize.io?name=${aUser[index].first_name}`).then(function (response) {
+                        let genderize = response.data.gender
+                        gender.push(genderize)
+                        aUser[index].gender = genderize
+
+                    })
+                    axios.get(`https://api.agify.io/?name=${aUser[index].first_name}`).then(function (response) {
+                        let age = response.data.age
+                        ages.push(age)
+                        aUser[index].age = age
+                    })
+
+                }
+                setTimeout(() => {
+                        callback(aUser, gender, ages)
+                        console.log(aLastName) 
+                    }, 2000);
+            })
+    
+        }
+        function display(res, gender, age) {
+            for (let index = 0; index < res.length; index++) {
+               
+                document.getElementById("content").innerHTML += `<td>
+                    <h3 style="text-align: center;">${res[index].first_name}</h3>
+                    <p style="text-align: center;">${res[index].email}</p>
+                    <p style="text-align: center;">${gender[index]}</p>
+                    <p style="text-align: center;">${age[index]}</p>
+                    <img src="${res[index].avatar}"style="margin-left: 20px;margin-right: 20px;">
+                    </td>`
+            }
+            console.log(res)
+        }
+        getUser(display)
+
+    </script>
+</body>
+
+</html>
