@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="homework7.3.js"></script>
+    <title>Homework 7.3</title>
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center">
+        <table class="table" id="table">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Gender</th>
+                <th class="text-center" scope="col">Company</th>
+                <th class="text-center" scope="col">Email</th>
+                <th class="text-center" scope="col">Friends</th>
+                <th class="text-center" scope="col">Balance</th>
+              </tr>
+            </thead>
+            <tbody class="text-center" id="result"> </tbody>
+        </table>
+    </div>
+    
+
+    <!-- <script>
+        axios.get("homework1-4.json").then(function(response){
+            let data = response.data;
+            //console.log(data);
+            let maleFilter = data.filter(x => x.gender == "male");
+            //console.log(maleFilter);
+            let friendFilter = maleFilter.filter(y => y.friends.length >= 2);
+            //console.log(friendFilter);
+            let requestFilter = friendFilter.filter(z => z.name);
+            let display = requestFilter.map(obj => {
+                return {
+                    name: obj.name, 
+                    gender: obj.gender, 
+                    company: obj.company, 
+                    email: obj.email, 
+                    friends: obj.friends, 
+                    balance: parseFloat(obj.balance.replace("$","").replace(",","")/10).toString()
+                }
+            });
+            
+             console.log("after filter: ", display);
+            let addSign = display.map(sign => "$" + sign.balance);
+            console.log(addSign);
+
+            tableData(display);
+
+           
+            
+            function tableData (display){
+                const sum = document.getElementById("result");
+                let dataHtml = '';
+                for (let data of display){
+                    let displayFriend = data.friends.map(p =>
+                     `<div>${p.name}</div>`
+                    ).join('')
+                    dataHtml += `<tr><td>${data.name}</td>
+                                <td>${data.gender}</td>
+                                <td>${data.company}</td>
+                                <td>${data.email}</td>
+                                <td>${displayFriend}</td>
+                                <td>${"$" +data.balance}</td></tr>`
+                }
+                console.log(dataHtml);
+                sum.innerHTML = dataHtml;
+            }
+            
+
+        })
+    </script> -->
+</body>
+</html>

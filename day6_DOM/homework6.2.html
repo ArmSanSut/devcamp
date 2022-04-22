@@ -11,7 +11,7 @@
     <title>Homework 6.2</title>
 </head>
 <body class="p-3">
-    <button id="btn" class="btn btn-primary">Click Here for Information</button>
+    <!-- <button id="btn" class="btn btn-primary">Click Here for Information</button> -->
     <div>
         <ul id="dataResult" class="list-group py-3"></ul>
     </div>
@@ -38,20 +38,25 @@
                 const node = document.createElement("p");
                 node.innerHTML =
                 "<li class='list-group-item d-flex justify-content-between'>User # " + [i+1] + "\t" + ":"
-                 + "\t" + dataUser[i].name + " <button onclick='alertText(" + member +  ")'>View</button></li>"; 
+                 + "\t" + dataUser[i].name + " <button class='btn btn-primary' onclick='alertText(" + member +  ")'>View</button></li>"; 
                  
                 
                 //insert element by using appendchild
                 document.getElementById("dataResult").appendChild(node);
             }
         });
-        function alertText(obj){
-            let items = [];
-            Object.entries(obj).forEach(([key,value]) => {
-                items.push("\n" + key + ":" + value);
-            });
-             alert(items);
-                }
+        function alertText(obj) {
+        alert(
+          "Name : " +
+            obj.name +
+            "\n" +
+            "Gender : " +
+            obj.gender +
+            "\n" +
+            "Height : " +
+            obj.height
+        );
+      }
 
         //document.getElementById("btn").addEventListener("click", displayData);
     </script>
