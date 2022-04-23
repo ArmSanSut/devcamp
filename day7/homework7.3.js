@@ -26,18 +26,20 @@ axios.get("homework1-4.json").then(function(response){
    
     
     function tableData (display){
-        const sum = document.getElementById("result");
+        const sum = document.getElementById("result");      //สั่งให้เอาข้อมูลด้านล่างไปใส่ใน id = "result"
         let dataHtml = '';
         for (let data of display){
             let displayFriend = data.friends.map(p =>
-             `<div>${p.name}</div>`
-            ).join('')
-            dataHtml += `<tr><td>${data.name}</td>
+             `<div>${p.name}</div>` //division use to display single element
+            ).join('')              //ถ้าไม่มี .join เครื่องหมาย , จะไม่หายไป เพราะมันจะมองเป็นทั้งก้อน
+            dataHtml += `<tr>
+                        <td>${data.name}</td>
                         <td>${data.gender}</td>
                         <td>${data.company}</td>
                         <td>${data.email}</td>
                         <td>${displayFriend}</td>
-                        <td>${"$" +data.balance}</td></tr>`
+                        <td>${"$" +data.balance}</td>
+                        </tr>`
         }
         console.log(dataHtml);
         sum.innerHTML = dataHtml;
