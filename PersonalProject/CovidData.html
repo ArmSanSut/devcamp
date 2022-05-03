@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+        crossorigin="anonymous">
+    <script src="CovidData.js"></script>
+    <title>Covid-19 Data | Home Page</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- first row (Header of the home page) -->
+        <div class="row" style="height: 150px; background-color: rgba(255,0,0,.1);">
+            <div class="col">
+                <h1>COVID-19 DATA REPORTED</h1>
+            </div>
+            <div class="col">
+                <h2>World-wide Covid-19 Data Reported</h2>
+            </div>
+        </div>
+        <!-- second row (list + data reported)-->
+        <div class="row">
+            <div class="col-lg-4" style="height: 400px; background-color: rgba(117, 192, 96, 0.1);">
+                    <ul>Select Display Countries
+                        <li>USA</li>
+                        <li>UK</li>
+                        <li>China</li>
+                        <li>Japan</li>
+                        <li>Thailand</li>
+                        <li>Malaysia</li>
+                    </ul>
+            </div>
+            <div class="col-lg-4" style="height: 400px; background-color: rgba(118, 96, 192, 0.1);">
+                    <div class="row" style="height: 130px; background-color: coral">
+                        <h3>Today Cases</h3>
+                    </div>
+                    <div class="row" style="height: 130px; background-color: violet">
+                        <h3>Today Deaths</h3>
+                    </div>
+                    <div class="row" style="height: 140px; background-color: palevioletred">
+                        <h3>Today Recovered</h3>
+                    </div>
+            </div>
+            <div class="col-lg-4">
+                    <div class="row" style="height: 200px; background-color: mediumseagreen">
+                        <div class="col" style="height: 200px; background-color: orange">
+                            <h4>Cases</h4>
+                        </div>
+                        <div class="col" style="height: 200px; background-color: palegreen">
+                            <h4>Recovered</h4>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 200px; background-color: lavender">
+                        <div class="col">
+                            <h4>Deaths</h4>
+                        </div>
+                    </div>
+            </div>
+        </div>
+            
+        
+        <!-- last row data from each continent -->
+        <div class="row">
+            <div class="col" style="height: 120px; background-color: rebeccapurple">
+                <p>North + South America</p>
+            </div>
+            <div class="col" style="height: 120px; background-color: coral">
+                <p>Europe</p>
+            </div>
+            <div class="col" style="height: 120px; background-color: rebeccapurple">
+                <p>Africa</p>
+            </div>
+            <div class="col" style="height: 120px; background-color: coral">
+                <p>Asia</p>
+            </div>
+            <div class="col" style="height: 120px; background-color: rebeccapurple">
+                <p>Middle East</p>
+            </div>
+            <div class="col" style="height: 120px; background-color: coral">
+                <p>Australia & Oceania</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
