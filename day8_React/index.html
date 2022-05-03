@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn React JSX</title>
+</head>
+<body>
+    <script>
+        class Employee {
+        constructor(firstname, lastname, salary) {
+        let _salary = salary; // simulate private variable
+        this.firstname = firstname; // public property
+        this.lastname = lastname; // public property
+        this.getSalary = function() { // simulate public method
+         return _salary;
+        };
+    }
+        hello() { // simulate public method
+        //console.log("Hello "+this.firstname+"!"); //Hello Dang!
+    }
+    }
+    let dang = new Employee('Dang','Red', 10000);
+    // console.log(dang.firstname); // Dang
+    // console.log(dang.lastname); // Red
+    // console.log(dang.getSalary());
+    dang.hello(); // Hello Dang!
+    dang.getSalary(); // 10000
+
+    //extends CEO from Employee
+    // class CEO extends Employee {
+    // constructor(firstname, lastname, salary) {
+    //     super(firstname, lastname, salary);
+    // }
+    // getSalary(){ // simulate public method
+    //     return super.getSalary()*2;
+    // };
+    // hello() { // simulate public method
+    //     console.log("Hi, nice to meet you. "+ this.firstname + " " + this.lastname + "!" );
+    // }
+    // }
+    // let ceo = new CEO('Somchai','Sudlor', 30000);
+    // console.log(ceo.firstname); // Somchai
+    // console.log(ceo.lastname); // Sudlor
+    // ceo.hello(); // Hi, nice to meet you. Somchai
+    // console.log(ceo.getSalary()); // 60000
+
+    class Programmer extends Employee{
+        constructor(firstname, lastname, salary){
+            super(firstname, lastname, salary);
+        }
+        getSalary(){
+            return super.getSalary()*4;
+        }
+        greeting(){
+            console.log("My name is " + this.firstname + " " + this.lastname);
+            console.log("My salary is " + this.getSalary());
+        }
+    }
+    let programmer = new Programmer('Inarm','Sansutnanont', 30000);
+    
+    //programmer.getSalary();
+    console.log(programmer.firstname);
+    console.log(programmer.lastname);
+    console.log(programmer.getSalary());
+    programmer.greeting();
+
+    // class Employee {
+    // constructor(firstname, lastname, salary) {
+    //     this.firstname = firstname;
+    //     this.lastname = lastname;
+    //     this.salary = salary;
+    //     setTimeout(function(){
+    //         console.log(this.firstname); // Code
+    //         console.log(this.lastname); // Camp
+    //     }.bind(this),1000);
+    // }
+    // }
+    // const Luke = new Employee('Code','Camp',20000);
+
+    </script>
+</body>
+</html>
