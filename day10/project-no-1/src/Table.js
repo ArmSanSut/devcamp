@@ -5,8 +5,6 @@ import './index.css';
 import { Table, Tag, Space,} from 'antd';
 
 
-
-
 const columns = [
     {
       title: 'Name', //title = head of the table
@@ -83,44 +81,6 @@ const data = [
       tags: ['cool', 'teacher'],
     },
   ];
-
-// const rowSelection = {
-//     onChange: (selectedRowKeys, selectedRows) => {
-//       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-//     },
-//     getCheckboxProps: (record) => ({
-//       disabled: record.name === 'Disabled User',
-//       // Column configuration not to be checked
-//       name: record.name,
-//     }),
-//   };
-//   const Demo = () => {
-//     const [selectionType, setSelectionType] = useState('checkbox');
-//     return (
-//       <div>
-//         <Radio.Group
-//           onChange={({ target: { value } }) => {
-//             setSelectionType(value);
-//           }}
-//           value={selectionType}
-//         >
-//           <Radio value="checkbox">Checkbox</Radio>
-//           <Radio value="radio">radio</Radio>
-//         </Radio.Group>
-  
-//         <Divider />
-  
-//         <Table
-//           rowSelection={{
-//             type: selectionType,
-//             ...rowSelection,
-//           }}
-//           columns={columns}
-//           dataSource={data}
-//         />
-//       </div>
-//     );
-//   };
 
 const TableComp = () => {
     return (<Table columns={columns} dataSource={data} />);
