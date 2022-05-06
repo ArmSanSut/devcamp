@@ -5,59 +5,59 @@ import React, { useState } from 'react';
 // import ProfileClassComp from './ClassComponent';
 
 //Example 2
-// const RenderProps = (props) => {
-//   return (<>{props.component}</>)
-// }
-// const Display = (props) => {
-//   return (
-//     <div>
-//       <p>string: {props.myStr}</p>
-//       <p>number: {props.myNumber}</p>
-//       <p>false value: {props.myBool.toString()}</p>
-//       <p>true value: {props.myTrueBool.toString()}</p>
-//       <p>null: {props.myNull === null && 'yes'}</p>
-//       <p>undefined: {props.myUndefinded === undefined && 'yes'}</p>
-//       <p>object: {JSON.stringify(props.myObj)}</p>
-//       <p>array: {JSON.stringify(props.myArray)}</p>
-//       <p>Date: {props.myDate.toString()}</p>
-//       <p>function: {props.myShowNameFunc('John')}</p>
-//       <p>Component:</p>
-//       <RenderProps component={(<ProfileFuncComp firstname="Hollie" lastname="Chang" />)} />
-//     </div>
-//   )
-// }
-//   const ProfileFuncComp = (props) => {
-//     return (<><p>Firstname : {props.firstname}</p>
-//       <p>Lastname : {props.lastname}</p></>)
-//   }
-//   function App() {
-//     const str = 'hello react!'
-//     console.log(str);
-//     const number = 5
-//     const bool = true
-//     const nullValue = null
-//     const undefinedValue = undefined
-//     const obj = { name: 'somchai', b: 2, lastname: 'sudlor' }
-//     const arr = ['john', 2, 'smith', 4]
-//     const now = new Date()
-//     const showNameFunc = (name) => {
-//       return 'my name is ' + name
-//     }
-//     return (
-//       <Display 
-//         myStr={str} 
-//         myNumber={number} 
-//         myBool={bool} 
-//         myTrueBool myNull={nullValue} 
-//         myUndefinded={undefinedValue} 
-//         myObj={obj} 
-//         myArray={arr} 
-//         myDate={now} 
-//         myShowNameFunc={showNameFunc}
-//     />
+const RenderProps = (props) => {
+  return (<>{props.component}</>)
+}
+const Display = (props) => {
+  return (
+    <div>
+      <p>string: {props.myStr}</p>
+      <p>number: {props.myNumber}</p>
+      <p>false value: {props.myBool.toString()}</p>
+      <p>true value: {props.myTrueBool.toString()}</p>
+      <p>null: {props.myNull === null && 'yes'}</p>
+      <p>undefined: {props.myUndefinded === undefined && 'yes'}</p>
+      <p>object: {JSON.stringify(props.myObj)}</p>
+      <p>array: {JSON.stringify(props.myArray)}</p>
+      <p>Date: {props.myDate.toString()}</p>
+      <p>function: {props.myShowNameFunc('John')}</p>
+      <p>Component:</p>
+      <RenderProps component={(<ProfileFuncComp firstname="Hollie" lastname="Chang" />)} />
+    </div>
+  )
+}
+  const ProfileFuncComp = (props) => {
+    return (<><p>Firstname : {props.firstname}</p>
+      <p>Lastname : {props.lastname}</p></>)
+  }
+  function App() {
+    const str = 'hello react!'
+    console.log(str);
+    const number = 5
+    const bool = true
+    const nullValue = null
+    const undefinedValue = undefined
+    const obj = { name: 'somchai', b: 2, lastname: 'sudlor' }
+    const arr = ['john', 2, 'smith', 4]
+    const now = new Date()
+    const showNameFunc = (name) => {
+      return 'my name is ' + name
+    }
+    return (
+      <Display 
+        myStr={str} 
+        myNumber={number} 
+        myBool={bool} 
+        myTrueBool myNull={nullValue} 
+        myUndefinded={undefinedValue} 
+        myObj={obj} 
+        myArray={arr} 
+        myDate={now} 
+        myShowNameFunc={showNameFunc}
+    />
 
-//     )
-//   }
+    )
+  }
 //Example 1
 // const ProfileFuncComp = (props) => {
 //   debugger
@@ -270,7 +270,7 @@ import React, { useState } from 'react';
 //   const onClickFunc = (e) => {
 //     // <h1>Function Display</h1>
 //     console.log("function is working");
-//     setNumber(number / 2);
+//     setNumber(number+1);
 //     console.log(number)
 //   }
 
@@ -282,9 +282,7 @@ import React, { useState } from 'react';
 //   );
 // }
 
-function App(){
-  return;
-}
+
 
 
 export default App;

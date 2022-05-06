@@ -36,29 +36,3 @@
     transform: rotate(360deg);
   }
 }
-.container {
-  background-color: paleturquoise;
-  /* display: flex;
-  flex-wrap: wrap; */
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
- 
-}
-.data-item p{
-  text-align: center;
-}
-.img-item{
-  max-width: 250px;
-  max-height: 250px;
-  margin: 25px;
-  justify-content: center;
-}
-#root {
-  display: flex;
-}
-/* .add-like {
-  background-color: blue;
-  margin-left: auto;
-  margin-right: auto;
-} */
