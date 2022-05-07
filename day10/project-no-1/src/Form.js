@@ -45,9 +45,9 @@ const FormComp = () => {
         name="username"
         rules={[
           {
-            // required: true,
-            // message: 'Please input your username!',
-            validator: customValidate
+             required: true,
+             message: 'Please input your username!',
+            // validator: customValidate
           },
         ]}
       >
