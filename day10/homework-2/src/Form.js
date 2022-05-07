@@ -1,189 +1,145 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import './index.css';
 import moment from 'moment';
-import { UploadOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  DatePicker,
-  Space,
-  InputNumber,
-  Switch,
-  Checkbox,
-  Upload, 
-  message,
-  Rate, 
-} from 'antd';
+import './index.css';
+import { Form, Input, Button, Checkbox, InputNumber, Select, DatePicker, Radio, Modal } from 'antd';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
-// function onChange(value) {
-//     console.log('age is: ', value);
-//   }
+const { Option } = Select; //Province
+const { RangePicker } = DatePicker; //DatePicker
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 4 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 20 },
-  },
-};
-const formItemLayoutWithOutLabel = {
-  wrapperCol: {
-    xs: { span: 24, offset: 0 },
-    sm: { span: 20, offset: 4 },
-  },
-};
-
-function RadioChange () {
-    const [value, setValue] = React.useState(1);
-  
-    const RadioOnChange = e => {
-      console.log('radio checked', e.target.value);
-      setValue(e.target.value);
-    };
-  
-    return (
-      <Radio.Group onChange={RadioOnChange} value={value}>
-        <Radio value={1}>Male</Radio>
-        <Radio value={2}>Female</Radio>
-      </Radio.Group>
-    );
-  };
-
-function disablePastDate(current){
-    return current && current < moment().endOf('day');
+function disablePastDate(current){    //Date
+  return current && current < moment().subtract(1,'day');
 }
 
-function CheckonChange(e) {
-    console.log(`checked = ${e.target.checked}`);
-  }
-
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const props = {
-  name: 'file',
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-  headers: {
-    authorization: 'authorization-text',
-  },
-  onChange(info) {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
-const key = 'updatable';
-const SubmitButton = () => {
-  message.loading({ content: 'Loading...', key });
-  setTimeout(() => {
-    message.success({ content: 'Your Form has been Submitted!', key, duration: 2 });
-  }, 500);
-};
-
-const FormFunc = () => {
-  const [componentSize, setComponentSize] = useState('default');
-
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
-
+const FormComp = () => {
   const onFinish = (values) => {
     console.log('Success:', values);
+    console.log(`${values.date[0]._d} to ${values.date[1]._d}`);
+    Modal.info ({
+      content: (
+        <pre>
+          Firtsname: {values.fname} <br/>
+          Lastname: {values.lname} <br/>
+          Age: {values.age} <br/>
+          Gender: {values.gender} <br/>
+          Province: {values.province} <br/>
+          {/* Member Period: {values.fname} <br/> */}
+          E-mail: {values.username} <br/>
+          Password: {values.password} <br/>
+          {/* Personal Skills: {values.skill} <br/> */}
+          {/* Accept: {values.remember} <br/> */}
+        </pre>
+      )
+    })
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-  const customValidate = (rule,value) => { 
-    console.log(value)
+  const ageValidate = (rule,value) => {
     if(value < 18) {
-      return Promise.reject(new Error("You are under 18"));
+      return Promise.reject(new Error("Under 18 years old"));
     } else if (value >= 60) {
-      return Promise.reject(new Error("You are over 60"));
+      return Promise.reject(new Error("Over 60 years old"));
     } else {
       return Promise.resolve();
     }
   }
 
-  // const formItemLayoutWithOutLabel = {
-  //   wrapperCol: {
-  //     xs: { span: 24, offset: 0 },
-  //     sm: { span: 20, offset: 4 },
-  //   },
-  // };
+  // Button Modal
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   
   return (
-
     <Form
-    name="basic"
-    labelCol={{
-      span: 6,
-    }}
-    wrapperCol={{
-      span: 12,
-    }}
-    initialValues={{
-      remember: true,
-      // username: "Insert your name"
-    }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed} 
-    autoComplete="off"
-    size='middle'
+      name="basic"
+      labelCol={{
+        span: 6,
+      }}
+      wrapperCol={{
+        span: 12,
+      }}
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed} 
+      autoComplete="off"
+      size='middle'
     >
-      
-      <Form.Item 
-        label="Name-Surname"
-        name='name'
-        rules={[
-            {
-              required: true,
-            },
-            {
-              max:50
-            }
-          ]}
-        >
-        <Input />
-      </Form.Item>
-           
-      <Form.Item 
-        name="age"
-        label="Age"
+      {/* Name */}
+      <Form.Item
+        label="Firtsname"
+        name="fname"
         rules={[
           {
-            type: "number",
-            min: 0,
-            max: 99,
-            validator: customValidate,
+             required: true,
+             message: 'Please input your firstname!',
+            
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      {/* Lastname */}
+      <Form.Item
+        label="Lastname"
+        name="lname"
+        rules={[
+          {
+             required: true,
+             message: 'Please input your lastname!',
+            
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      {/* Age */}
+      <Form.Item
+        label="Age"
+        name="age"
+        rules={[
+          {
+            validator: ageValidate
           }
         ]}
       >
-        <InputNumber/>;
+        <InputNumber min={1} max={99} />
       </Form.Item>
-      <Form.Item 
+
+      {/* Gender */}
+      <Form.Item
+        name="gender"
         label="Gender"
-        name = 'gender'
         rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-        <RadioChange />
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Radio.Group >
+          <Radio value="male">Male</Radio>
+          <Radio value="female">Female</Radio>
+        </Radio.Group>
       </Form.Item>
+
+      {/* Province */}
       <Form.Item 
         label="Province"
         name= 'province'
@@ -193,26 +149,27 @@ const FormFunc = () => {
             },
           ]}
         >
-            <Select
-                showSearch
+          <Select
                 style={{ width: 200 }}
                 defaultValue='Bangkok'
         >
-            <Option value="1">Bangkok</Option>
-            <Option value="2">Nonthaburi</Option>
-            <Option value="3">Pathumthani</Option>
-            <Option value="4">Khonkean</Option>
-            <Option value="5">Krabi</Option>
-            <Option value="6">Chonburi</Option>
-            <Option value="7">Abroad</Option>
-        </Select>
-      </Form.Item>
-      <Form.Item
+            <Option value="Bangkok">Bangkok</Option>
+            <Option value="Nonthaburi">Nonthaburi</Option>
+            <Option value="Pathumthani">Pathumthani</Option>
+            <Option value="Khonkean">Khonkean</Option>
+            <Option value="Krabi">Krabi</Option>
+            <Option value="Chonburi">Chonburi</Option>
+            <Option value="Abroad">Abroad</Option>
+          </Select>
+        </Form.Item>
+
+        {/* Abroad condition */}
+        <Form.Item
         noStyle
         shouldUpdate={(prevValues, currentValues) => prevValues.province !== currentValues.province}
       >
         {({ getFieldValue }) =>
-          getFieldValue('province') === '7' ? (
+          getFieldValue('province') === 'Abroad' ? (
             <Form.Item
               name="other"
               label="Other"
@@ -228,14 +185,65 @@ const FormFunc = () => {
         }
       </Form.Item>
 
-      <Form.Item>
-        <Form.List
-        name="skills"
+      {/* DatePicker */}
+      <Form.Item
+        label="Member Period"
+        name= 'date'
+        rules={[
+            {
+              required: true,
+            },
+          ]}
+      >
+        
+          <RangePicker 
+            
+            disabledDate = {disablePastDate} 
+          />
+        
+      </Form.Item>
+
+      {/* Username */}
+      <Form.Item
+        label="E-mail"
+        name="username"
         rules={[
           {
-            validator: async (_, skills) => {
-              if (!skills || skills.length < 2) {
-                return Promise.reject(new Error('At least 2 Skills'));
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      {/* Password */}
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+    {/* Skills */}
+    <Form.Item
+      label = 'Personal Skills'
+      wrapperCol={{
+        offset: 0,
+        span: 24,
+      }}
+    >
+      <Form.List
+        name="skill"
+        rules={[
+          {
+            validator: async (_, skill) => {
+              if (!skill || skill.length < 2) {
+                return Promise.reject(new Error('At least 2 skills'));
               }
             },
           },
@@ -245,8 +253,6 @@ const FormFunc = () => {
           <>
             {fields.map((field, index) => (
               <Form.Item
-                {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                label={index === 0 ? 'Skills' : ''}
                 required={false}
                 key={field.key}
               >
@@ -257,7 +263,7 @@ const FormFunc = () => {
                     {
                       required: true,
                       whitespace: true,
-                      message: "Please add your personal skills.",
+                      message: "Please input personal skills or delete this field.",
                     },
                   ]}
                   noStyle
@@ -272,95 +278,57 @@ const FormFunc = () => {
                 ) : null}
               </Form.Item>
             ))}
-            <Form.Item
-              label = 'Personal Skills'
-              rules={[
-                {
-                  required: true,
-                }
-              ]}
-            >
+            <Form.Item>
               <Button
                 type="dashed"
                 onClick={() => add()}
-                style={{ width: '80%' }}
+                style={{ width: '60%' }}
                 icon={<PlusOutlined />}
               >
-                Add Skills
+                Add Your Personal Skills Here
               </Button>
               <Form.ErrorList errors={errors} />
             </Form.Item>
           </>
         )}
-        </Form.List>
+      </Form.List>
+    </Form.Item>
+
+      {/* Remember  */}
+      <Form.Item
+        name="remember"
+        valuePropName="checked"
+        wrapperCol={{
+          offset: 8,
+          span: 16,
+        }}
+      >
+        <Checkbox>Accept All Terms and Conditions</Checkbox>
       </Form.Item>
 
-      <Form.Item 
-        label="Member Period"
-        name= 'date'
-        rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-        <Space direction="vertical" size={12}>
-            <RangePicker 
-                format= 'MMM Do YY'
-                disabledDate = {disablePastDate}  
-            />
-        </Space>
-      </Form.Item>
-      <Form.Item 
-        label="Accept Term"
-        name= 'accept'
-        rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-        <Checkbox 
-            onChange={CheckonChange}
-            checked = "true"
-        >
-            Accept All Terms and Conditions
-        </Checkbox>
-      </Form.Item>
-      <Form.Item label="Switch" valuePropName="checked">
-        <Switch />
-      </Form.Item>
-      <Form.Item 
-        label ='Rate Satisfaction'
-        name= 'rate'
-      >
-        <Rate 
-          defaultValue = '3'
-        />
-      </Form.Item>
+
+      {/* Button Modal */}
       <Form.Item
-        label='Upload File Here'
-        name='upload'
-        rules= {[
-          {required: true}
-        ]}
+        wrapperCol={{
+          offset: 8,
+          span: 16,
+        }}
       >
-        <Upload {...props}>
-          <Button icon={<UploadOutlined />}>
-            Click Here to Upload File
-          </Button>
-        </Upload>
-      </Form.Item>
-      <Form.Item htmlType="submit">
-        <Button 
-          type="primary"
-          onClick={SubmitButton}
-        >
-          Submit Form
+        <Button type="primary" htmlType="submit" onClick={showModal}>
+          Submit
         </Button>
+        <Modal 
+          title="Basic Modal" 
+          visible={isModalVisible} 
+          onOk={handleOk} 
+          onCancel={handleCancel}
+        >  
+        </Modal>
       </Form.Item>
     </Form>
   );
 };
 
-export default FormFunc;
+
+
+export default FormComp;
