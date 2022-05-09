@@ -24,11 +24,11 @@ const FormComp = () => {
           Age: {values.age} <br/>
           Gender: {values.gender} <br/>
           Province: {values.province} <br/>
-          Member Period: {values.date.map(x => {x._d})} <br/>
+          Member Period: {values.date.map(x => <li><p>{x.toString()}</p></li>)} <br/>
           E-mail: {values.username} <br/>
           Password: {values.password} <br/>
-          {/* Personal Skills: {values.skill} <br/> */}
-          {/* Accept: {values.remember} <br/> */}
+          Personal Skills: {values.skill.map(y => <p>{y}</p>)} <br/>
+          Accept: {values.remember.toString()} <br/>
         </pre>
       )
     })
@@ -143,6 +143,7 @@ const FormComp = () => {
       <Form.Item 
         label="Province"
         name= 'province'
+        initialValue='Bangkok'
         rules={[
             {
               required: true,
@@ -151,7 +152,7 @@ const FormComp = () => {
         >
           <Select
                 style={{ width: 200 }}
-                defaultValue='Bangkok'
+                
         >
             <Option value="Bangkok">Bangkok</Option>
             <Option value="Nonthaburi">Nonthaburi</Option>
