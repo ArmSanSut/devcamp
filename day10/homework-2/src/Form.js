@@ -24,7 +24,7 @@ const FormComp = () => {
           Age: {values.age} <br/>
           Gender: {values.gender} <br/>
           Province: {values.province} <br/>
-          {/* Member Period: {values.fname} <br/> */}
+          Member Period: {values.date.map(x => {x._d})} <br/>
           E-mail: {values.username} <br/>
           Password: {values.password} <br/>
           {/* Personal Skills: {values.skill} <br/> */}
@@ -317,13 +317,6 @@ const FormComp = () => {
         <Button type="primary" htmlType="submit" onClick={showModal}>
           Submit
         </Button>
-        <Modal 
-          title="Basic Modal" 
-          visible={isModalVisible} 
-          onOk={handleOk} 
-          onCancel={handleCancel}
-        >  
-        </Modal>
       </Form.Item>
     </Form>
   );
