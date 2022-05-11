@@ -63,9 +63,9 @@
                 callback();
                 let resultDisplay = document.getElementById("thailand");
                     //covidTable += "<td>" + Thailand + "</td>";
-                    covidTable += "<td>" + response.data.cases + "</td>";  
-                    covidTable += "<td>" + response.data.todayCases + "</td>";  
-                    covidTable += "<td>" + response.data.deaths + "</td>";  
+                    covidTable += "<td>" + covidData.Thailand.cases + "</td>";  
+                    covidTable += "<td>" + covidData.Thailand.todayCases + "</td>";  
+                    covidTable += "<td>" + covidData.Thailand.deaths + "</td>";  
                     covidTable += "<td>" + response.data.todayDeaths + "</td>";
                     covidTable += "<td>" + response.data.recovered + "</td>";
                     covidTable += "<td>" + response.data.todayRecovered + "</td>"; 

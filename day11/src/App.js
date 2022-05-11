@@ -1,81 +1,96 @@
 import { Routes, Route, Outlet, Link, Navigate, useNavigate } from "react-router-dom";
 import React from "react";
 
-function App() {
+function App () {
   return (
-    <AuthProvider>
-      <h1>Auth Example</h1>
+    <>
       <Routes>
-          <Route element={<Layout />}>
-          <Route path="/" element={<PublicPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/protected" 
-            element={
-              <RequireAuth>
-                <ProtectedPage />
-              </RequireAuth>} 
-          />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
-    </AuthProvider>
+    </>
   );
 }
 
-function Layout() {
-  return (
-    <div>
-      <ul>
-        <li><Link to="/">Public Page</Link></li>
-        <li><Link to="/protected">Protected Page</Link></li>
-      </ul>
-      <Outlet />
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <AuthProvider>
+//       <h1>Auth Example</h1>
+//       <Routes>
+//           <Route element={<Layout />}>
+//           <Route path="/" element={<PublicPage />} />
+//           <Route path="/login" element={<LoginPage />} />
+//           <Route path="/protected" 
+//             element={
+//               <RequireAuth>
+//                 <ProtectedPage />
+//               </RequireAuth>} 
+//           />
+//         </Route>
+//       </Routes>
+//     </AuthProvider>
+//   );
+// }
 
-function PublicPage() {
-  return <h3>Public Page</h3>;
-}
+// function Layout() {
+//   return (
+//     <div>
+//       <ul>
+//         <li><Link to="/">Public Page</Link></li>
+//         <li><Link to="/protected">Protected Page</Link></li>
+//       </ul>
+//       <Outlet />
+//     </div>
+//   );
+// }
 
-function ProtectedPage() {
-  let navigate = useNavigate();
-  let auth = React.useContext(AuthContext);
+// function PublicPage() {
+//   return <h3>Public Page</h3>;
+// }
 
-  const onLogoutFunc = () => {
-    auth.signout()
-    navigate('/protected')
-  }
-  return <><h3>Protected Page</h3><input type="button" value="Logout" onClick={onLogoutFunc} /></>;
-}
+// function ProtectedPage() {
+//   let navigate = useNavigate();
+//   let auth = React.useContext(AuthContext);
 
-function LoginPage() {
-  let navigate = useNavigate();
-  let auth = React.useContext(AuthContext);
+//   const onLogoutFunc = () => {
+//     auth.signout()
+//     navigate('/protected')
+//   }
+//   return <><h3>Protected Page</h3><input type="button" value="Logout" onClick={onLogoutFunc} /></>;
+// }
 
-  const onClickFunc = () => {
-    auth.signin()
-    navigate('/protected')
-  }
-  return <input type="button" value="Login" onClick={onClickFunc} />
-}
+// function LoginPage() {
+//   let navigate = useNavigate();
+//   let auth = React.useContext(AuthContext);
 
-let AuthContext = React.createContext();
+//   const onClickFunc = () => {
+//     auth.signin()
+//     navigate('/protected')
+//   }
+//   return <input type="button" value="Login" onClick={onClickFunc} />
+// }
 
-function AuthProvider(props) {
-  let [isLogin, setIsLogin] = React.useState(false);
-  let signin = () => { 
-    setIsLogin(true); 
-  };
-  let signout = (callback) => { 
-    setIsLogin(false); 
-  };
-  return <AuthContext.Provider value={{ isLogin, signin, signout }}>{props.children}</AuthContext.Provider>;
-}
+// let AuthContext = React.createContext();
 
-function RequireAuth(props) {
-  let auth = React.useContext(AuthContext)
-  return !auth.isLogin ? <Navigate to="/login" replace /> : props.children;
-}
+// function AuthProvider(props) {
+//   let [isLogin, setIsLogin] = React.useState(false);
+//   let signin = () => { 
+//     setIsLogin(true); 
+//   };
+//   let signout = (callback) => { 
+//     setIsLogin(false); 
+//   };
+//   return <AuthContext.Provider value={{ isLogin, signin, signout }}>{props.children}</AuthContext.Provider>;
+// }
+
+// function RequireAuth(props) {
+//   let auth = React.useContext(AuthContext)
+//   return !auth.isLogin ? <Navigate to="/login" replace /> : props.children;
+// }
 
 
 

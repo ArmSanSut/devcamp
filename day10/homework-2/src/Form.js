@@ -24,6 +24,7 @@ const FormComp = () => {
           Age: {values.age} <br/>
           Gender: {values.gender} <br/>
           Province: {values.province} <br/>
+          Abroad: {values.other} <br/>
           Member Period: {values.date.map(x => <li><p>{x.toString()}</p></li>)} <br/>
           E-mail: {values.username} <br/>
           Password: {values.password} <br/>
@@ -61,6 +62,14 @@ const FormComp = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const CustomValidate = (rule,value) => {
+    if (value) {
+      return Promise.resolve();
+    } else {
+      return Promise.reject(new Error("Please check the box"))
+    }
+  }
+
 
   
   return (
@@ -299,6 +308,11 @@ const FormComp = () => {
       <Form.Item
         name="remember"
         valuePropName="checked"
+        rules={[
+          {
+            validator: CustomValidate,
+          },
+        ]}
         wrapperCol={{
           offset: 8,
           span: 16,

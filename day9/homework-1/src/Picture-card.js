@@ -29,8 +29,8 @@ const PictureCard = (props) =>{
             <p>LIKES : {like}</p>
             <p>COMMENTS : {comment}</p>
         </div>
-        <div className='add-like'>
-            <input type="button" value="LIKE" onClick = {onClickFunc}></input>
+        <div className='add-like'style={{textAlign: 'center'}}>
+            <input type="button" value="LIKE" onClick = {onClickFunc}></input> <br />
             <input type="text" onKeyPress={onKeyPressFunc}></input>
         </div>
         

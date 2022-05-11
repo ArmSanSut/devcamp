@@ -1,4 +1,93 @@
-<!DOCTYPE html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        div{
+            text-align: center;
+        }
+        table {
+            display: inline-block;
+        }
+        td {
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            
+        }
+        .name {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- display table -->
+    <div>
+        <h1>Hello Reqres Users</h1>
+        <table>
+            <thead></thead>
+            <tbody id="data-body"></tbody>
+        </table>
+    </div>
+
+        <script>
+            //axios to get data from API
+            axios.get("https://reqres.in/api/users").then(function(response){
+                let data = response.data.data;
+                let Table = document.getElementById("data-body");
+                let textHtml = '';
+                // console.log(data);
+                data.forEach(x => {
+                    let name = x.first_name;
+                    let lname = x.last_name;
+                    let mail = x.email
+                    let img = "<p><img src='" + x.avatar + "'></p>";
+                    //use value to display in table
+                    textHtml += 
+                    `<td>
+                        <p>${name}</p>
+                        <p>${lname}</p>
+                        <p>${mail}</p>
+                        <p>${img}</p>
+                    </td>`
+
+                })
+                Table.innerHTML = textHtml;
+
+            })
+        </script>
+
+
+
+    <!-- <script>
+        //axios to get data
+        axios.get("https://reqres.in/api/users").then(function(response){
+            let data = response.data.data;
+            let Head = document.getElementById('name-head')
+            let Table = document.getElementById('data-body');
+            let textHtml = '';
+            console.log(data);
+            data.forEach(x => {
+                let img = "<p><img src='" + x.avatar + "'></p>";
+                let name = x.first_name;
+                let lname = x.last_name;
+                let mail = x.email;
+                textHtml += 
+                `<td>
+                    <p class = "name">${x.first_name}</p>
+                    <p>${x.last_name}</p>
+                    <p>${x.email}</p>
+                    ${img}
+                </td>`
+             })
+            Table.innerHTML = textHtml;
+            console.log(textHtml);
+        })
+    </script> -->
+</body>
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -31,4 +120,4 @@
     
     
     
-</html>
+</html> -->

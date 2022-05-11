@@ -12,20 +12,21 @@ h1{
 .mobileOnly{
     color: red;
 }
+.container {
+    margin-top: 40px;
+}
 
        
-        @media (min-width: 576px) {
+ @media (min-width: 576px) {
             .largeScreen {background-color: white;}
             .mobileOnly {display: none;}
-        }
+ }
         
-
-
-        @media (max-width: 576px) {
+@media (max-width: 576px) {
             .largeScreen {background-color: white;}
             .hidden {display: none;}
-        }
-        @media (min-width: 700px) {
+}
+ @media (min-width: 700px) {
             .largeScreen {background-color: white;}
             .text{font-size: 100px !important;}
-        }
+}

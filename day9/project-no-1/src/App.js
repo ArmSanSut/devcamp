@@ -4,60 +4,184 @@ import React, { useState } from 'react';
 // import ProfileFuncComp from './Funccomponent';
 // import ProfileClassComp from './ClassComponent';
 
-//Example 2
-const RenderProps = (props) => {
-  return (<>{props.component}</>)
-}
-const Display = (props) => {
-  return (
-    <div>
-      <p>string: {props.myStr}</p>
-      <p>number: {props.myNumber}</p>
-      <p>false value: {props.myBool.toString()}</p>
-      <p>true value: {props.myTrueBool.toString()}</p>
-      <p>null: {props.myNull === null && 'yes'}</p>
-      <p>undefined: {props.myUndefinded === undefined && 'yes'}</p>
-      <p>object: {JSON.stringify(props.myObj)}</p>
-      <p>array: {JSON.stringify(props.myArray)}</p>
-      <p>Date: {props.myDate.toString()}</p>
-      <p>function: {props.myShowNameFunc('John')}</p>
-      <p>Component:</p>
-      <RenderProps component={(<ProfileFuncComp firstname="Hollie" lastname="Chang" />)} />
-    </div>
-  )
-}
-  const ProfileFuncComp = (props) => {
-    return (<><p>Firstname : {props.firstname}</p>
-      <p>Lastname : {props.lastname}</p></>)
+function App () {
+  const [age, setAge] = useState({
+    name: "John",
+    age: 23,
+    skills : [
+      {id:1, name: "JS"},
+      {id:2, name: "React"}
+    ]
+  })
+  const ChangeAge = () => {
+    let newAge = {...age}
+    newAge.age = 30
+    setAge(newAge);
   }
-  function App() {
-    const str = 'hello react!'
-    console.log(str);
-    const number = 5
-    const bool = true
-    const nullValue = null
-    const undefinedValue = undefined
-    const obj = { name: 'somchai', b: 2, lastname: 'sudlor' }
-    const arr = ['john', 2, 'smith', 4]
-    const now = new Date()
-    const showNameFunc = (name) => {
-      return 'my name is ' + name
-    }
-    return (
-      <Display 
-        myStr={str} 
-        myNumber={number} 
-        myBool={bool} 
-        myTrueBool myNull={nullValue} 
-        myUndefinded={undefinedValue} 
-        myObj={obj} 
-        myArray={arr} 
-        myDate={now} 
-        myShowNameFunc={showNameFunc}
-    />
 
-    )
+
+  const ChangeSkill =()=> {
+    let newData = {...age}
+    let resultForm = ['Python','Java','SQL','GO','Rust']
+    
+    resultForm.forEach((x)=>{
+      newData.skills.push({id:newData.skills.length+1,name:x})
+    })
+
+    console.log(newData);
+
+    // let resultTransform = resultForm.map((x,i)=> {
+    //   return {id:i+1,name:x}
+    // })
+    // console.log(resultTransform)
+
+    // newData.skills = resultTransform
+    setAge(newData);
   }
+  return (
+    <>
+      <p>Name : {age.name}</p>
+      <p>Age: {age.age} </p>
+      <ul>Skills:{age.skills.map(x=> <li>{x.name}</li>)}</ul>
+      <button onClick={ChangeAge}>Change Age</button> <br/>
+      <button onClick={ChangeSkill}>Change skill</button>
+    </>
+  
+  );
+}
+
+// const onCopyFunc = (e) => {
+//   e.preventDefault();
+//   console.log(e)
+//   alert(`YOU ARE NOT ALLOW TO COPY CONTENT`)
+// }
+
+// const onPasteFunc = (e) => {
+//   e.preventDefault();
+//   alert(`YOU CANNOT PASTE CONTENT HERE`)
+// }
+// function App(){
+  
+//   return (
+//     <>
+//       <p onCopy={onCopyFunc}>
+//       Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
+//       Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, 
+//       and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" 
+//       (The Extremes of Good and Evil) by Cicero, written in 45 BC. 
+//       This book is a treatise on the theory of ethics, very popular during the Renaissance. 
+//       The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+//     </p>
+//     <input type="text" onPaste={onPasteFunc}>
+//     </input>
+//     </>
+    
+//   );
+  
+// }
+
+
+
+// function App () {
+//   const [websiteName,setWebsiteName] = useState('DEVCAMP');
+  
+//   const menuList = [
+//     {id: 1, list: 'menu 1'},
+//     {id: 2, list: 'menu 2'},
+//     {id: 3, list: 'menu 3'}
+//   ]
+//   return (
+//     <>
+//       <Header name={websiteName}>
+//         <h3>Children</h3>  
+//       </Header> 
+//       <Content key='id' menu={menuList}/>
+//     </> 
+//   );
+// }
+
+// function Header (props) {
+//   return (
+//     <>
+//       <h1>{props.name}</h1>
+//       {props.children}
+//     </>
+    
+//   )
+// }
+
+// function BtnClick(e) {
+//   alert(`You click the button`);
+// }
+
+// function Content (props) {
+//   const TypeText = (e) => {
+//     console.log(e.target.value);
+//   }
+//   return (
+//     <>
+//       <h4> This is a CONTENT</h4>
+//       {props.menu.map(x => <li key= {x.id}>{x.list}</li>)}
+//       <button onClick={e => {BtnClick(e)}}>Click Here</button> <br />
+//       <input type="text" onChange={TypeText} />
+//     </>
+//   );
+// }
+
+//Example 2
+// const RenderProps = (props) => {
+//   return (<>{props.component}</>)
+// }
+// const Display = (props) => {
+//   return (
+//     <div>
+//       <p>string: {props.myStr}</p>
+//       <p>number: {props.myNumber}</p>
+//       <p>false value: {props.myBool.toString()}</p>
+//       <p>true value: {props.myTrueBool.toString()}</p>
+//       <p>null: {props.myNull === null && 'yes'}</p>
+//       <p>undefined: {props.myUndefinded === undefined && 'yes'}</p>
+//       <p>object: {JSON.stringify(props.myObj)}</p>
+//       <p>array: {JSON.stringify(props.myArray)}</p>
+//       <p>Date: {props.myDate.toString()}</p>
+//       <p>function: {props.myShowNameFunc('John')}</p>
+//       <p>Component:</p>
+//       <RenderProps component={(<ProfileFuncComp firstname="Hollie" lastname="Chang" />)} />
+//     </div>
+//   )
+// }
+//   const ProfileFuncComp = (props) => {
+//     return (<><p>Firstname : {props.firstname}</p>
+//       <p>Lastname : {props.lastname}</p></>)
+//   }
+//   function App() {
+//     const str = 'hello react!'
+//     console.log(str);
+//     const number = 5
+//     const bool = true
+//     const nullValue = null
+//     const undefinedValue = undefined
+//     const obj = { name: 'somchai', b: 2, lastname: 'sudlor' }
+//     const arr = ['john', 2, 'smith', 4]
+//     const now = new Date()
+//     const showNameFunc = (name) => {
+//       return 'my name is ' + name
+//     }
+//     return (
+//       <Display 
+//         myStr={str} 
+//         myNumber={number} 
+//         myBool={bool} 
+//         myTrueBool myNull={nullValue} 
+//         myUndefinded={undefinedValue} 
+//         myObj={obj} 
+//         myArray={arr} 
+//         myDate={now} 
+//         myShowNameFunc={showNameFunc}
+//     />
+
+//     )
+//   }
 //Example 1
 // const ProfileFuncComp = (props) => {
 //   debugger

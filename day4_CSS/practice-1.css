@@ -1,0 +1,21 @@
+/* .img {
+    width: 100%;
+} */
+.column .img{
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+.row {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    
+}
+.column {
+    flex: 25%; 
+    padding: 0 4px;
+}
+h1{
+    text-align: center;
+}
