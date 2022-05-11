@@ -22,7 +22,7 @@
 
        function TransformPrice (e) {
         var typePrice = document.getElementById("price");
-        let commas = Intl.NumberFormat().format(Number(typePrice.value.replace(/,/g, "")));
+        let commas = Intl.NumberFormat().format(Number(typePrice.value.replaceAll(",", "")));
         typePrice.value = commas;
         console.log(commas);
        }
