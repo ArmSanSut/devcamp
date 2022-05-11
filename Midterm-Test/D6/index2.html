@@ -21,16 +21,10 @@
     <script>
 
        function TransformPrice (e) {
-        var typePrice = document.getElementById("price").value;
-        var pattern = /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g ;
-        
-        // console.log('event preview',e);
-        console.log(pattern.test(typePrice))
-        if (pattern.test(typePrice)) {
-            typePrice = typePrice.replace(",","").replace(pattern, ",");
-            document.getElementById("price").value = typePrice;
-            console.log(typePrice);
-        }
+        var typePrice = document.getElementById("price");
+        let commas = Intl.NumberFormat().format(Number(typePrice.value.replace(/,/g, "")));
+        typePrice.value = commas;
+        console.log(commas);
        }
        document.getElementById("price").addEventListener("keyup", TransformPrice);
         
