@@ -1,0 +1,19 @@
+Homework-3
+
+3.1	select * from book 
+	where name like '%Mar%'
+
+3.2	SELECT name,LOCATE('o',name) 
+	FROM book 
+	WHERE locate('o',name)>0
+	LIMIT 2; 
+
+3.3	import additional 10 rows of data from Mockaroo (this is not an SQL format)
+
+3.4 	select sum(amount) as "TotalSell" from bookorder;
+
+3.5	select isbn from bookorder
+	where amount is not null;
+
+3.6 	select sum(price*amount) as "REVENUE" from bookorder;
+
