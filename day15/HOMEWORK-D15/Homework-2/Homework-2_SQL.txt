@@ -1,0 +1,17 @@
+Homework-2
+2.1 	alter table employee
+	add column address varchar(255);
+
+2.2	update employee 
+	set address = 'Bangkapi'
+    	where id = 2;
+    	update employee
+	set address = 'Bangna'
+    	where id = 6;
+
+2.3	select count(*) from employee
+
+2.4	select * from employee 
+	where age<20;
+
+2.5	select firstname, age from employee;

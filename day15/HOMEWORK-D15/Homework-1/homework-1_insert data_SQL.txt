@@ -1,0 +1,14 @@
+Homework-1
+1.2.4	insert into employee (firstname, lastname, age)
+	('Noah','Armstrong','34'),
+	('Leslie','Ellis','24'),
+	('Sandra','Hoffman','35'),
+	('Cameron','Meyer','19'),
+	('Cameron','Moore','27');
+
+1.2.5	insert into employee (isbn, title, price)
+	('9783598215933','The Marquis and I','250'),
+	('9783598215957','Blood on the Tongue','352'),
+	('9783598215995','A Higher Loyalty','157'),
+	('9783598215919','The Mars Room','199'),
+	('9783598215766','His Toy','289');
