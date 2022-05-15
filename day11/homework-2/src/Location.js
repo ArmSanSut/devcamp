@@ -62,6 +62,7 @@ function Location () {
 
 function LocationDetail () {
     const location = useLocation();
+    console.log('location',location)
     return (
     <div style={{textAlign:'center'}}>
         <h2>Location Details</h2>
