@@ -3,12 +3,12 @@ import React from 'react';
 import { Table} from 'antd';
 import { Button} from 'antd';
 import { useNavigate, useLocation } from "react-router-dom";
-import employeeData from './EmployeeData';
+import employeeData from './EmployeeData';      //import mock data from other file
 
 function Department () {
     let navigate = useNavigate();
 
-    const key = "department" ;
+    const key = "department" ;      //define key, so that it can call its value 
     const departmentList = [...new Map(employeeData.map((item) => [item[key], item])).values(),];
 
     let departmentData = [];
@@ -55,9 +55,6 @@ function DepartmentDetail () {
     return (
         <>
             <h1>Employee Lists</h1>
-            {/* <p>Employee ID : {display.state.id}</p>
-            <p>Firstname : {display.state.firstname}</p> */}
-
         </>
     );
 }
