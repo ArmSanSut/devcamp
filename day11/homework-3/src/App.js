@@ -4,7 +4,7 @@ import './App.css';
 // import { Layout, Menu} from 'antd';
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { Employee,EmployeeDetail } from './Employee';
-import Department from './Department';
+import { Department, DepartmentDetail } from './Department';
 import Home from './Home';
 
 // const { Header, Content, Footer } = Layout;
@@ -21,7 +21,7 @@ function App(){
             <Route path="employee" element={<Employee />} />
             <Route path="employee/detail" element={<EmployeeDetail />} />
             <Route path="department" element={<Department />} />
-            {/* <Route path="department/detail" element={<DEpartmentDetail />} /> */}
+            <Route path="employee/:department" element={<Employee />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
       </Routes>
@@ -36,11 +36,11 @@ function App(){
 function Layout() {
   return (
     <div>
-      <nav style={{display: "flex", }}>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/employee">Employee List</Link></li>
-          <li><Link to="/department">Department List</Link></li>
+      <nav>
+        <ul  style={{display: "flex", justifyContent:'center', alignItems:'center' }}>
+          <li style={{listStyleType: 'none', marginLeft: '2rem'}}><Link to="/">Home</Link></li>
+          <li style={{listStyleType: 'none', marginLeft: '2rem'}}><Link to="/employee">Employee List</Link></li>
+          <li style={{listStyleType: 'none', marginLeft: '2rem'}}><Link to="/department">Department List</Link></li>
           {/* <li><Link to="/nothing-here">Wrong Process</Link></li> */}
         </ul>
       </nav>
