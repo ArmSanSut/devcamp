@@ -7,7 +7,7 @@ var mysql = require('mysql2/promise');
 /* GET users listing. */
 router.get('/', async (req, res, next)  =>{
   
-     const connection = await mysql.createConnection ({
+      const connection = await mysql.createConnection ({
       host: 'localhost',
       user: 'root', // <== ระบุให้ถูกต้อง
       // password: 'root', // <== ระบุให้ถูกต้อง
