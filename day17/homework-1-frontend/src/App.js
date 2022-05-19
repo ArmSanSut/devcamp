@@ -16,8 +16,8 @@ export default function App() {
    },
    {
      title: 'Instructor_name',
-     dataIndex: 'instructor_name',
-     key: 'instructors.name',
+     dataIndex: 'instructor',
+     key: 'instructor',
    },
  ];
  const [data, setData] = useState([]);
