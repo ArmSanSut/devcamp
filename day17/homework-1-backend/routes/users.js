@@ -16,22 +16,10 @@ router.get('/', function (req, res, next) {
  
   // เปิด connection ไปที่ database
   connection.connect();
- 
-  // console.log('start query at: ' + new Date().getTime());
-  // connection.query(`SELECT course_id as course_name, count(*) as count 
-  //   from enrolls 
-  //   join students on students.id = enrolls.student_id
-  //   group by course_id`, (err, rows, fields) => {
-  //   if (err) throw err;
- 
-  //   console.log('end query at: ' + new Date().getTime());
-  //   res.json(rows);
-  // });
 
-  connection.query(`SELECT courses.name as course_name, enrolls.student_id as student_id
+  connection.query(`SELECT courses.name as course_name, instructors.name as instructor
   from courses
-  left JOIN enrolls on courses.id = enrolls.course_id
-  WHERE enrolls.course_id is null
+  left JOIN instructors on courses.id = instructors.id
   order by courses.id;`, (err, rows, fields) => {
     if (err) throw err;
  

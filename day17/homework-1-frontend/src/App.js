@@ -4,21 +4,21 @@ import { useEffect, useState } from 'react';
 
 export default function App() {
  const columns = [
+  //  {
+  //    title: 'Course_ID',
+  //    dataIndex: 'course_name',
+  //    key: 'courses.id',
+  //  },
    {
      title: 'Course_Name',
      dataIndex: 'course_name',
-     key: 'course_name',
+     key: 'courses.name',
    },
    {
-     title: 'Count',
-     dataIndex: 'count',
-     key: 'count',
+     title: 'Instructor_name',
+     dataIndex: 'instructor_name',
+     key: 'instructors.name',
    },
-  //  {
-  //    title: 'Instructor_name',
-  //    dataIndex: 'instructor_name',
-  //    key: 'instructor_name',
-  //  },
  ];
  const [data, setData] = useState([]);
  useEffect(() => {
