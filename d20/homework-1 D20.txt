@@ -1,0 +1,63 @@
+
+HOMEWORK-1
+CREATE TABLE customer (
+    id int AUTO_INCREMENT,
+    name VARCHAR (60) NOT NULL,
+    address VARCHAR (255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+    id int AUTO_INCREMENT,
+    employee_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    date timestamp NOT NULL DEFAULT now(),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE employee (
+    id int AUTO_INCREMENT,
+    name VARCHAR (60) NOT NULL,
+    address VARCHAR (255) NOT NULL,
+    salary  INT(11) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE department_budget (
+    name VARCHAR (60) NOT NULL,
+    budeget INT (11) NOT NULL,
+    employee_id INT NOT NULL,
+    PRIMARY KEY (name)
+);
+
+CREATE TABLE student (
+    id INT NOT NULL,
+    name VARCHAR(60) NOT NULL,
+    teach_by VARCHAR(60) NOT NULL
+);
+
+
+CREATE TABLE order_item (
+    id INT NOT NULL, 
+    amount INT(11) NOT NULL,
+    discount INT(11) NOT NULL,
+    order_id INT NOT NULL
+);
+
+CREATE TABLE product (
+    id int AUTO_INCREMENT,
+    name VARCHAR (60) NOT NULL,
+    description VARCHAR (255) NOT NULL,
+    price INT(11) NOT NULL,
+    quantity INT(11) NOT NULL,
+    order_item_id INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE supplier (
+    name VARCHAR (60) NOT NULL,
+    product_id INT NOT NULL,
+    address VARCHAR (255) NOT NULL,
+    phone_number INT(10) NOT NULL,
+    PRIMARY KEY (name)
+);
