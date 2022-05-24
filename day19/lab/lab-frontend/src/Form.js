@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 const FormComp = (props) => {
     const onFinish = (values)=> {
         console.log('Success:', values);
+        // axios.post('localhost:3000/employee')
     }
     const onFinishFailed =(errorInfo)=> {
         console.log('Failed:', errorInfo);
