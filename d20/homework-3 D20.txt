@@ -1,0 +1,36 @@
+HOMEWORK-3
+3.1
+
+SELECT student_id, SUM(price), COUNT(*) FROM
+ (
+    SELECT * FROM enrolls
+    INNER JOIN courses
+    ON enrolls.course_id = courses.id
+  ) as new_table
+    	INNER JOIN students
+    	ON students.id = new_table.student_id
+    	GROUP BY new_table.student_id
+
+3.2
+
+SELECT student_id, new_table.name, MAX(price) FROM
+ (
+    SELECT * FROM enrolls
+    INNER JOIN courses
+    ON enrolls.course_id = courses.id
+ )  as new_table
+    	INNER JOIN students
+    	ON students.id = new_table.student_id
+    	GROUP BY new_table.student_id
+
+3.3
+
+SELECT student_id, new_table.name, AVG(price) FROM
+ (
+    SELECT * FROM enrolls
+    INNER JOIN courses
+    ON enrolls.course_id = courses.id
+ )  as new_table
+    	INNER JOIN students
+    	ON students.id = new_table.student_id
+    	GROUP BY new_table.student_id
