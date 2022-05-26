@@ -5,13 +5,18 @@ import React from 'react';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { username : "Unknown User"}
+    this.state = { 
+      username : "Unknown User",
+      history : [],
+    }
     
   }
 
   componentDidMount() {    
     let name = prompt("Please Enter Your Name");
-    this.setState({username: name});
+    this.setState({
+      username: name
+    });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -25,13 +30,7 @@ class App extends React.Component {
         return false
       }
       else {
-        const date = new Date();
-        const result =document.getElementById('result');
-        result.innerHTML += `<li> 
-          Previous Name : ${this.state.username} </br>
-          Current Name : ${nextState.username}  </br>
-          Date : ${date}
-        </li>`
+
         return true
       }
 
@@ -48,12 +47,35 @@ class App extends React.Component {
         onClick={() => {
 
           const submit = document.getElementById('btn-user').value;
-          this.setState({username: submit })  
+        
+          this.setState({
+            username : submit? submit : "Unknown",
+            history : [
+              ...this.state.history,
+              {
+                previous : [this.state.username],
+                current : [submit? submit : "Unknown"],
+                date : Date(),
+              }
+            ]
+          })  
 
         }}
       >
           Change Your Name</button>
-      <ul id='result'></ul>
+
+      <p> {this.state.history.map((x) => {
+            return (
+              <div>
+              
+                <p>
+                  Current: {x.previous}, Next: {x.current}, Date : {x.date}
+                </p>
+            
+              </div>
+            );
+          })}
+      </p>
     </>
   }
 }
