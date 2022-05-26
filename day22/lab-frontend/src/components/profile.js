@@ -14,7 +14,7 @@ export default function Profile() {
    
    if (token) {
      axios
-       .get('/api/users/mycart', {
+       .get('/api/profile', {
          headers: {
            Authorization: `Bearer ${token}`, // JWT in Authorization header
          },
