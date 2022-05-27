@@ -52,15 +52,23 @@ return (
   <div style={{margin : 20}}>
     <h1>Form Filling</h1>
     <FormComp getValue = {getValue}/>
+    
+    
     <hr />
     <h3>Male List</h3>
-    <p>{JSON.stringify(male)}</p>
+    <ul>
+      {male.map(x => <li>Name: {x.firstname} Lastname : {x.lastname} Gender : {x.gender}</li>)}
+    </ul>
     <p>Total : {male.length}</p>
     <h3>Female List</h3>
-    <p>{JSON.stringify(female)}</p>
+    <ul>
+      {female.map(y => <li>Name: {y.firstname} Lastname : {y.lastname} Gender : {y.gender}</li>)}
+    </ul>
     <p>Total : {female.length}</p>
     <h3>N/A List</h3>
-    <p>{JSON.stringify(na)}</p>
+    <ul>
+      {na.map(z => <li>Name: {z.firstname} Lastname : {z.lastname} Gender : {z.gender}</li>)}
+    </ul>
     <p>Total : {na.length}</p>
   </div>
 
