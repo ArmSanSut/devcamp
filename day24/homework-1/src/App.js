@@ -40,7 +40,7 @@ function App() {
   const getValue = (value) => {
     console.log(male.length+1)
     if(value.gender === "male") {
-      return setMale([...male,value],[]);
+      return setMale([...male,value]);
     } else if (value.gender === "female") {
       return setFemale([...female,value]);
     } else {
