@@ -1,13 +1,17 @@
-import { useContext } from 'react';
-import { Layout, Menu} from 'antd';
-import AuthContext from './authContext';
+import {Layout, Menu} from 'antd' ;
 
-const { Header, Content, Footer } = Layout;
-function Stock () {
-    const context = useContext(AuthContext);
-    if (!context) {
-        window.location.href = '/stock-notallow';
-    } 
+const { Header, Content, Footer} = Layout;
+
+function NotAllow () {
+    const notAllow = ()=> {
+        window.location.href = '/dashboard';
+    }
+    const ToStock = ()=> {
+        window.location.href = '/stock'
+    }
+    const ToWarehouse = ()=> {
+        window.location.href = '/warehouse'
+    }
     return (
         <>
             <Layout>
@@ -24,8 +28,20 @@ function Stock () {
                         mode="horizontal"
                         defaultSelectedKeys={['2']}
                     >
-                        <Menu.Item >
-                            Stock
+                        <Menu.Item 
+                            onClick={ToStock}
+                        >
+                            Stock Management
+                        </Menu.Item>
+                        <Menu.Item 
+                            onClick={ToWarehouse}
+                        >
+                            Warehouse Management
+                        </Menu.Item>
+                        <Menu.Item
+                            onClick={notAllow}
+                        >
+                            Back to Homepage
                         </Menu.Item>
                     </Menu>
                 </Header>
@@ -60,4 +76,4 @@ function Stock () {
     )
 }
 
-export default Stock;
+export default NotAllow;

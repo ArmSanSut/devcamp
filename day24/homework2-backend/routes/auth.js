@@ -40,7 +40,7 @@ router.post('/token', async function (req, res) {
             privateKey,
             { expiresIn: '300000ms' }
             );
-        res.json({ token: token });
+        res.json({ token: token, username : result[0][0].username });
 
         } else {
           res.status(401).send({ error: 'invalid credential' });

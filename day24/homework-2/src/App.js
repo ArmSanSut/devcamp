@@ -1,23 +1,30 @@
-import Login from './components/login';
 import Warehouse from './components/warehouse';
 import Dashboard from './components/dashboard';
 import Stock from './components/stock';
+import HomeComp from './components/homeComp';
+import AuthContext from './components/authContext';
+import NotAllow from './components/stock-2';
 import './App.css';
 
 import { Routes, Route, Link } from "react-router-dom";
 
+const token = localStorage.getItem('token') || null
+
 function App() {
   return (
     <div>
-      <Routes>
+      <AuthContext.Provider value = {token} >
+        <Routes>
+            
+            <Route index element={<HomeComp />} />        
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/stock" element={<Stock />} />
+            <Route path="/stock-notallow" element={<NotAllow />} />
+            <Route path="/warehouse" element={<Warehouse />} />
         
-          <Route index element={<Login />} />        
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/stock" element={<Stock />} />
-          <Route path="/warehouse" element={<Warehouse />} />
-          <Route path="*" element={<NoMatch />} />
-       
-      </Routes>
+        </Routes>
+      </AuthContext.Provider>
+
       <hr />
     </div>
   );
