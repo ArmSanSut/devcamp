@@ -29,22 +29,28 @@ function HomePage() {
         setData(display.productList)
     }, [display.productList])
 
-    const onDelete =async (e, index) => {
-        e.preventDefault();
-        console.log(e)
-        console.log(index)
-        console.log('click to delete');
+    /*-----------------DELETE COMPONENTS---------------------------*/
+
+    const onDelete =  (id) => {
+        window.confirm("sure to delete?")
         try {
-            await axios.delete(`http://localhost:3000/users/product/${index}`)
+             axios.delete(`http://localhost:3000/users/product/${id}`)
+             .then(() => {
+                 axios.get('http://localhost:3000/users')
+             })
+
         } catch (e) {
             console.log(e);
         }
+        window.location.href = '/';
     }
 
+    /*-----------------CREATE COMPONENTS---------------------------*/
     const ToCreate = () => {
         window.location.href = '/view-product';
     }
 
+    /*-----------------EDIT COMPONENTS---------------------------*/
     const onEdit = (e, index) => {
         e.preventDefault()
         navigate(`/update-product/${index}`)
@@ -87,15 +93,15 @@ function HomePage() {
         {
             title: 'Action',
             key: 'action',
-            render: (t, r, i) => (
+            render: (_, record, i) => (
                 <>
                     <Space>
                         {/* <a href={`/update-product/${i}`}> */}
-                            <Button type="primary" onClick={e => onEdit(e,i)}>
+                        <Button type="primary" onClick={e => onEdit(e, i)}>
                             EDIT
                         </Button>
                         {/* </a> */}
-                        <Button type='danger' onClick={e => onDelete(e, i)}>
+                        <Button type='danger' onClick={() => onDelete(record.id)}>
                             DELETE
                         </Button>
                     </Space>
@@ -110,7 +116,12 @@ function HomePage() {
 
     return (
         <>
-            <Table columns={columns} dataSource={data} rowKey={x => x.id} />
+            <Table 
+                columns={columns} 
+                dataSource={data} 
+                rowKey={x => x.id}
+
+            />
             <Space
                 style={{
                     display: 'flex',
@@ -121,7 +132,9 @@ function HomePage() {
                 <Button
                     type="primary"
                     onClick={ToCreate}
-
+                    style = {{
+                        marginBottom : 50
+                    }}
                 >
                     CREATE
                 </Button>
