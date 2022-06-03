@@ -34,9 +34,9 @@ function HomePage() {
     const onDelete =  (id) => {
         window.confirm("sure to delete?")
         try {
-             axios.delete(`http://localhost:3000/users/product/${id}`)
+             axios.delete(`http://localhost:3000/users/product/${id}`) //ลบข้อมูลจาก id ของสินค้านั้นๆ
              .then(() => {
-                 axios.get('http://localhost:3000/users')
+                 axios.get('http://localhost:3000/users')   //ดึงข้อมูลเดิมกลับมาเพื่อแสดงผล
              })
 
         } catch (e) {
