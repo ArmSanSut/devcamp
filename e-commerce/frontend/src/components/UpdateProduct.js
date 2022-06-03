@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { createItems } from '../Items/productItems';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
+function UpdateProduct() {
+    // const navigate = useNavigate();
+    const product = useSelector((state) => state.product);
+    const {id} = useParams()
+    const [data, setData] = useState({})
+    // const dispatch = useDispatch();
+    // setData(product.productList)
+    // console.log(data);
+    useEffect(() => {
+        // console.log(product.productList);
+        setData(product.productList[Number.parseInt(id)])
+        // console.log(product.productList[Number.parseInt(id)]);
+    }, [product.productList]);
 
-function CreateProduct() {
-    const navigate = useNavigate();
-    const create = useSelector((state) => state.product.productList);
-    const dispatch = useDispatch();
+    // useEffect(() => {
+    //     setData(data)
+    // }, [data])
+
+    console.log(data);
     const layout = {
         labelCol: {
             span: 8,
@@ -21,11 +35,11 @@ function CreateProduct() {
         },
     };
 
-    const onCreateForm = async (values) => {
+    const onUpdateForm = async (values) => {
 
         console.log(values);
         try {
-            await axios.post('http://localhost:3000/users/product', {
+            await axios.put(`http://localhost:3000/users/product/${data.id}`, {
                     product_name: values.product_name,
                     stock_left: values.stock_left,
                     category: values.category
@@ -33,8 +47,7 @@ function CreateProduct() {
         } catch (e) {
             console.log(e);
         }
-
-        navigate('/');
+        window.location.href = '/';
     }
 
     return (
@@ -51,16 +64,17 @@ function CreateProduct() {
                     span: 16,
                 }}
                 initialValues={{
-                    remember: true,
+                    remember: false,
                 }}
                 // onFinish={onFinish}
                 // onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 {...layout}
-                onFinish={onCreateForm}
+                onFinish={onUpdateForm}
             >
                 <Form.Item
                     label="Product Name"
+                    
                     name="product_name"
                     rules={[
                         {
@@ -82,7 +96,7 @@ function CreateProduct() {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -94,6 +108,7 @@ function CreateProduct() {
                             message: 'Please input your Product Category!',
                         },
                     ]}
+                    initialValue={`${data.category}`}
                 >
                     <Input />
                 </Form.Item>
@@ -105,7 +120,7 @@ function CreateProduct() {
                     }}
                 >
                     <Button type="primary" htmlType="submit">
-                        CREATE NEW PRODUCT
+                        UPDATE PRODUCT
                     </Button>
                 </Form.Item>
             </Form>
@@ -113,4 +128,4 @@ function CreateProduct() {
     )
 }
 
-export default CreateProduct;
+export default UpdateProduct;
