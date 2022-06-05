@@ -4,9 +4,7 @@ var router = express.Router();
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
- });
+
  
  router.post('/', async function (req, res) {
   const connection = await mysql.createConnection({
@@ -29,7 +27,6 @@ router.get('/', function (req, res, next) {
 
   res.send({ id: result[0].insertId });
  });
+
  
-
-
 module.exports = router;
