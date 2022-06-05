@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import { Menu } from 'antd';
 
 function NavbarWithContext() {
-    localStorage.getItem('username');
-    console.log(localStorage.getItem('username'))
+    const username = localStorage.getItem('username');
+    console.log(username)
     const logOut = ()=> {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
@@ -62,7 +62,7 @@ function NavbarWithContext() {
                         right: 0,
                     }}
                 >
-                    Hello {localStorage.getItem('username')}
+                    Hello {username}
                 </Menu.Item>
 
             </Menu>
