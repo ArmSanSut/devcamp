@@ -32,7 +32,7 @@ function HomePage() {
     /*-----------------DELETE COMPONENTS---------------------------*/
 
     const onDelete =  (id) => {
-        window.confirm("sure to delete?")
+        window.confirm("Are you sure to delete the corresponding data?")
         try {
              axios.delete(`http://localhost:3000/users/product/${id}`) //ลบข้อมูลจาก id ของสินค้านั้นๆ
              .then(() => {
@@ -52,8 +52,16 @@ function HomePage() {
 
     /*-----------------EDIT COMPONENTS---------------------------*/
     const onEdit = (e, index) => {
+        e.stopPropagation();
         e.preventDefault()
         navigate(`/update-product/${index}`)
+    }
+
+    const displayRowData = (e, index)=> {    
+        e.preventDefault();
+        console.log('click to display');
+        console.log(index)
+        navigate(`/display/${index}`);
     }
 
     const columns = [
@@ -120,7 +128,13 @@ function HomePage() {
                 columns={columns} 
                 dataSource={data} 
                 rowKey={x => x.id}
-
+                onRow={(e, i) => {
+                    return {
+                      onClick : (e, i) => {
+                          displayRowData(e, i)
+                        } // click row
+                    };
+                  }}
             />
             <Space
                 style={{

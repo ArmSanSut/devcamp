@@ -7,22 +7,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 function UpdateProduct() {
-    // const navigate = useNavigate();
     const product = useSelector((state) => state.product);
+    console.log(product) //ประกาศเพื่อเรียกใช้ Redux(productList) ที่สร้างไว้
     const {id} = useParams()
     const [data, setData] = useState({})
-    // const dispatch = useDispatch();
-    // setData(product.productList)
-    // console.log(data);
+
+    //if changes occur in productList -> setData
     useEffect(() => {
-        // console.log(product.productList);
-        setData(product.productList[Number.parseInt(id)])
-        // console.log(product.productList[Number.parseInt(id)]);
+        //setData(product.productList[Number.parseInt(id)])     //Number.parseInt(id) === parseInt(id) _> change into json form
+        setData(product.productList[parseInt(id)])  //product.productList[parseInt(id)] -> setData to each id that have changes
     }, [product.productList]);
 
-    // useEffect(() => {
-    //     setData(data)
-    // }, [data])
+    //define variable to display data in the input form
+    const item = product.productList[parseInt(id)];
+    const product_name = item.product_name;
+    const stock_left = item.stock_left;
+    const category = item.category;
 
     console.log(data);
     const layout = {
@@ -82,6 +82,7 @@ function UpdateProduct() {
                             message: 'Please input your Product Name!',
                         },
                     ]}
+                    initialValue={`${product_name}`}
                 >
                     <Input />
                 </Form.Item>
@@ -95,6 +96,7 @@ function UpdateProduct() {
                             message: 'Please input your Stock Left!',
                         },
                     ]}
+                    initialValue={`${stock_left}`}
                 >
                     <Input/>
                 </Form.Item>
@@ -108,7 +110,7 @@ function UpdateProduct() {
                             message: 'Please input your Product Category!',
                         },
                     ]}
-                    initialValue={`${data.category}`}
+                    initialValue={`${category}`}
                 >
                     <Input />
                 </Form.Item>
