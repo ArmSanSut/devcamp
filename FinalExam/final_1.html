@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Final #1</title>
+</head>
+
+
+
+<body>
+    <button id="btn-click">Click Here!</button>
+
+    <script>
+
+
+        const performFunction = async () => {
+            console.log('click')
+            const employee = await axios.get('https://5b8000bc0516b10014d44a51.mockapi.io/employees')
+            const employeeData = employee.data;
+            console.log(employeeData)
+
+            
+
+            const currency = await axios.get('https://5b8000bc0516b10014d44a51.mockapi.io/exchange-rate ');
+            console.log(currency.data.USD)
+
+            const data = employeeData.map(function (obj) {
+                return " Firstname : " + obj.firstname + ", Lastname : " + obj.lastname + ", Salary :" + obj.salary/currency.data.USD;
+            });
+            console.log(data);
+
+            // for(let i=0; i<=employeeData.length; i++){
+
+            // }
+
+        }
+
+
+        const btn = document.getElementById('btn-click');
+        btn.addEventListener('click', performFunction);
+
+    </script>
+</body>
+
+</html>
