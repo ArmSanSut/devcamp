@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const app = express();
-const port = 3000;
+const port = 5000;
 var cors = require('cors');
 
 app.use(bodyParser.urlencoded( {extended: true} ));
@@ -54,3 +54,5 @@ app.post('/store-data', (req, res) => {
 app.listen(port, ()=> {
   console.log(`Listening at port number : ${port}`)
 })
+
+module.exports = app;

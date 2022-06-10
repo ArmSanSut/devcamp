@@ -54,7 +54,7 @@ class MyForm extends React.Component {
     alert('A form was submitted: ' + this.state);
  
     axios
-    .post('http://localhost:3000/store-data', data)
+    .post('http://localhost:5000/store-data', data)
     
 }
  
