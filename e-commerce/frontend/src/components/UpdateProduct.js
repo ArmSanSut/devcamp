@@ -14,7 +14,7 @@ function UpdateProduct() {
 
     //if changes occur in productList -> setData
     useEffect(() => {
-        //setData(product.productList[Number.parseInt(id)])     //Number.parseInt(id) === parseInt(id) _> change into json form
+        //setData(product.productList[Number.parseInt(id)])     //Number.parseInt(id) === parseInt(id) -> change into json form
         setData(product.productList[parseInt(id)])  //product.productList[parseInt(id)] -> setData to each id that have changes
     }, [product.productList]);
 

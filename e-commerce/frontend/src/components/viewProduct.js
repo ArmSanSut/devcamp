@@ -15,13 +15,13 @@ function ViewProduct() {
     console.log(data)
 
     const item = product.productList[parseInt(id)];
-    // console.log(product.productList[parseInt(id)]);
+    console.log(product.productList[parseInt(id)]);
     
 
-    // const product_name = item.product_name;
-    // console.log(product_name);
-    // const stock_left = item.stock_left;
-    // const category = item.category;
+    const product_name = item.product_name;
+    console.log(product_name);
+    const stock_left = item.stock_left;
+    const category = item.category;
 
     return (
         <>
@@ -32,15 +32,17 @@ function ViewProduct() {
                     marginTop: 150
                 }}
             >
-                <p>Product Name :  </p>
-                <p>Stock Left :</p>
-                <p>Category : </p>
+                <p>Product Name : {`${product_name}`} </p>
+                <p>Stock Left :  {`${stock_left}`} </p>
+                <p>Category : {`${category}`} </p>
             </Card>
             <Button
              type='primary'
              style={{
                 marginTop: 50,
-                marginLeft:300 
+                display: 'block',
+                marginLeft: 'auto',
+                marginRight: 'auto' 
              }}   
             >
                 Back To Home HomePage

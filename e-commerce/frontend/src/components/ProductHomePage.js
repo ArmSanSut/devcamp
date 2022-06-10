@@ -53,7 +53,7 @@ function HomePage() {
     /*-----------------EDIT COMPONENTS---------------------------*/
     const onEdit = (e, index) => {
         e.stopPropagation();
-        e.preventDefault()
+        e.preventDefault();
         navigate(`/update-product/${index}`)
     }
 
@@ -69,17 +69,9 @@ function HomePage() {
             title: 'Photo',
             dataIndex: 'photo',
             key: 'photo',
-            render: () => (
-                <Avatar
-                    size={{
-                        xs: 24,
-                        sm: 32,
-                        md: 40,
-                        lg: 64,
-                        xl: 80,
-                        xxl: 100,
-                    }}
-                    icon={<AntDesignOutlined />}
+            render: (_, r) => (
+                <Avatar 
+                    src= {`http://localhost:3000/static/upload-files/${r.photo}`}
                 />
             )
         },
@@ -104,11 +96,11 @@ function HomePage() {
             render: (_, record, i) => (
                 <>
                     <Space>
-                        {/* <a href={`/update-product/${i}`}> */}
+                        
                         <Button type="primary" onClick={e => onEdit(e, i)}>
                             EDIT
                         </Button>
-                        {/* </a> */}
+                        
                         <Button type='danger' onClick={() => onDelete(record.id)}>
                             DELETE
                         </Button>
@@ -130,7 +122,7 @@ function HomePage() {
                 rowKey={x => x.id}
                 onRow={(e, i) => {
                     return {
-                      onClick : (e, i) => {
+                      onClick : (e) => {
                           displayRowData(e, i)
                         } // click row
                     };

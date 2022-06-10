@@ -1,6 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Upload, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { createItems } from '../Items/productItems';
 import { useNavigate } from "react-router-dom";
@@ -26,16 +27,41 @@ function CreateProduct() {
         console.log(values);
         try {
             await axios.post('http://localhost:3000/users/product', {
-                    product_name: values.product_name,
-                    stock_left: values.stock_left,
-                    category: values.category
-                })
+                product_name: values.product_name,
+                stock_left: values.stock_left,
+                category: values.category,
+                //photo: values.photo
+            })
         } catch (e) {
             console.log(e);
         }
 
         navigate('/');
     }
+    let filename = '';
+    //Upload image files
+    const props = {
+        name: 'file',
+        action: 'http://localhost:3000/users/upload',
+        headers: {
+          authorization: 'authorization-text',
+        },
+    
+        onChange(info) {
+          console.log(info.file)
+          if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+          }
+    
+          if (info.file.status === 'done') {
+              console.log('test file.name',info.file.name)
+              filename = info.file.response.filename;
+              message.success(`${info.file.name} file uploaded successfully`);
+          } else if (info.file.status === 'error') {
+                message.error(`${info.file.name} file upload failed.`);
+          }
+        },
+      };
 
     return (
         <div>
@@ -96,6 +122,20 @@ function CreateProduct() {
                     ]}
                 >
                     <Input />
+                </Form.Item>
+
+                <Form.Item
+                    style={{
+                        marginLeft: 347
+                    }}
+                >
+                    <Upload {...props}>
+                        <Button
+                            icon={<UploadOutlined />}
+                        >
+                            Click to Upload Image
+                        </Button>
+                    </Upload>
                 </Form.Item>
 
                 <Form.Item
