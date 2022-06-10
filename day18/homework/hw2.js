@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded( {extended: false} ));
 app.use(bodyParser.json());
 
 app.post('/api/product', (req, res) => {
+    console.log('test');
     const connection = mysql.createConnection( {
         host: 'localhost',
         user: 'root',
@@ -26,6 +27,7 @@ app.post('/api/product', (req, res) => {
     connection.query(`
         insert into stock (product_name, stock_left, category) 
         values ('${req.body.product_name}', '${req.body.stock_left}', '${req.body.category}')`, (err, rows, fields)=> {
+            
             res.json(rows);
         });
 
