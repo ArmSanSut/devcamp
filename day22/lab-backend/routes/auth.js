@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 router.post('/token', async function (req, res) {
-    const {username, password, first_name, last_name, email} = req.body;
+    const {username, password } = req.body;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root', 
