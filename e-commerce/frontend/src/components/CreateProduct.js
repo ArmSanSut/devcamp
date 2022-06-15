@@ -26,23 +26,23 @@ function CreateProduct() {
 
         console.log(values);
         try {
-            await axios.post('http://localhost:3000/users/product', {
+            await axios.post('/users/product', {
                 product_name: values.product_name,
                 stock_left: values.stock_left,
                 category: values.category,
-                //photo: values.photo
+                photo: values.photo
             })
         } catch (e) {
             console.log(e);
         }
 
-        navigate('/');
+        navigate('/homepage');
     }
     let filename = '';
     //Upload image files
     const props = {
         name: 'file',
-        action: 'http://localhost:3000/users/upload',
+        action: '/users/upload',
         headers: {
           authorization: 'authorization-text',
         },

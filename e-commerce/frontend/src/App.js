@@ -4,12 +4,14 @@ import UpdateProduct from './components/UpdateProduct';
 import ViewProduct from './components/viewProduct';
 import Register from './components/register';
 import Login from './components/login';
+import axios from 'axios';
 import './App.css';
 
 import { Route, Routes } from "react-router-dom";
 
 
 function App() {
+  axios.default.baseURL = 'http://13.250.20.232:3000';
 
 
   return (

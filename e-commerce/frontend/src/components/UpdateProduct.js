@@ -39,7 +39,7 @@ function UpdateProduct() {
 
         console.log(values);
         try {
-            await axios.put(`http://localhost:3000/users/product/${data.id}`, {
+            await axios.put(`/users/product/${data.id}`, {
                     product_name: values.product_name,
                     stock_left: values.stock_left,
                     category: values.category
@@ -47,7 +47,7 @@ function UpdateProduct() {
         } catch (e) {
             console.log(e);
         }
-        window.location.href = '/';
+        window.location.href = '/homepage';
     }
 
     return (

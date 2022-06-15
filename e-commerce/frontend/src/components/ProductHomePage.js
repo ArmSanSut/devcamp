@@ -20,7 +20,7 @@ function HomePage() {
 
     //get data from database 
     useEffect(() => {
-        axios.get('http://localhost:3000/users')
+        axios.get('/users')
             .then(result => dispatch(initData(result.data)))
             .catch(e => console.log(e))
     }, []);
@@ -34,15 +34,15 @@ function HomePage() {
     const onDelete =  (id) => {
         window.confirm("Are you sure to delete the corresponding data?")
         try {
-             axios.delete(`http://localhost:3000/users/product/${id}`) //ลบข้อมูลจาก id ของสินค้านั้นๆ
+             axios.delete(`/users/product/${id}`) //ลบข้อมูลจาก id ของสินค้านั้นๆ
              .then(() => {
-                 axios.get('http://localhost:3000/users')   //ดึงข้อมูลเดิมกลับมาเพื่อแสดงผล
+                 axios.get('/users')   //ดึงข้อมูลเดิมกลับมาเพื่อแสดงผล
              })
 
         } catch (e) {
             console.log(e);
         }
-        window.location.href = '/';
+        window.location.href = '/homepage';
     }
 
     /*-----------------CREATE COMPONENTS---------------------------*/
@@ -71,7 +71,7 @@ function HomePage() {
             key: 'photo',
             render: (_, r) => (
                 <Avatar 
-                    src= {`http://localhost:3000/static/upload-files/${r.photo}`}
+                    src= {`/static/upload-files/${r.photo}`}
                 />
             )
         },

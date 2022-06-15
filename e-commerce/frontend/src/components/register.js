@@ -9,7 +9,7 @@ export default function Register() {
      console.log(values);
    // call backend here
    try {
-    const result = await axios.post('http://localhost:3000/register', {
+    const result = await axios.post('/register', {
       username: values.username,
       password: values.password,
       first_name: values.first_name,

@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
+//const axios = require('axios');
 
 const fileupload = require("express-fileupload");
 
@@ -28,15 +29,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
-app.use('/register', registerRouter);
+app.use('/api/', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/register', registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+//set up base URL
+//axios.default.baseURL = 'http://13.250.20.232:3000';
 
 // error handler
 app.use(function(err, req, res, next) {
